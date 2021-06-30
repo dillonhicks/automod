@@ -115,11 +115,13 @@ fn mod_item(vis: &Visibility, name: String) -> TokenStream2 {
         quote! {
             #[path = #path]
             #vis mod #ident;
-        }
+            #vis use self::#ident::*;
+         }
     } else {
         let ident = Ident::new(&name, Span::call_site());
         quote! {
             #vis mod #ident;
+            #vis use self::#ident::*;
         }
     }
 }
